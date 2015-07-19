@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Where Am I? - Example</title>
+    </head>
+
+    <body>
+        <h1>Where Am I?</h1>
+
+        <div id="location-info"></div>
+
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="/dist/where-am-i.min.js"></script>
+        <script>
+            var help = new WhereAmI()
+              , $container = $('#location-info')
+
+            help.findMe(function (place) {
+                $container
+                    .append($('<p/>').text('Found you!'))
+                    .append($('<ul/>')
+                        .append($('<li/>').text('Lat/lng: ' + place.lat + '/' + place.lng))
+                        .append($('<li/>').text('Country: ' + place.country.name + ' (' + place.country.iso + ')'))
+                        .append($('<li/>').text('Region: ' + place.country.region))
+                    )
+                    .append($('<p/>').text('Are you in...'))
+                    .append($('<ul/>')
+                        .append($('<li/>').text('GB? ' + (place.inCountry('GB') ? 'Yes' : 'No')))
+                        .append($('<li/>').text('USA? ' + (place.inCountry('US') ? 'Yes' : 'No')))
+                        .append($('<li/>').text('Europe? ' + (place.inRegion('Europe') ? 'Yes' : 'No')))
+                        .append($('<li/>').text('America? ' + (place.inRegion(['North America', 'South America']) ? 'Yes' : 'No')))
+                    )
+            }, function (err) {
+                $container.append($('<p/>').text("Couldn't find you!"))
+            })
+        </script>
+    </body>
+</html>

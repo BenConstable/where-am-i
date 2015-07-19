@@ -1,0 +1,17 @@
+{
+    "asi": true
+  , "browser": true
+  , "camelcase": false
+  , "indent": 4
+  , "laxbreak": true
+  , "laxcomma": true
+  , "node": true
+  , "predef": [
+        "describe"
+      , "it"
+    ]
+  , "quotmark": "single"
+  , "strict": false
+  , "undef": true
+  , "unused": true
+}
