@@ -1,25 +1,25 @@
-# where-am-i
+#where-am-i
 
 > Simple wrapper around several client-side geolocation APIs
 
 *Note - This is still a work in progress!*
 
-## Installation
+##Installation
 
-### NPM (for Browserify)
+###NPM (for Browserify)
 
 ```
 $ npm install --save where-am-i
 ```
 
-### Browser
+###Browser
 
 Just include the [`dist/where-am-i.min.js`](https://github.com/BenConstable/where-am-i/blob/master/dist/where-am-i.min.js)
 file in a script tag on your page.
 
-## Usage
+##Usage
 
-### Via Browserify
+###Via Browserify
 
 ```js
 var WhereAmI = require('where-am-i')
@@ -38,7 +38,7 @@ help.findMe(
 )
 ```
 
-### Via script
+###Via script
 
 ```html
 <script src="dist/where-am-i.min.js"></script>
@@ -62,7 +62,7 @@ help.findMe(
 [UMD](https://github.com/umdjs/umd) is supported for AMD and Node-style module
 loaders.
 
-### Example
+###Example
 
 Checkout [the example](https://github.com/BenConstable/where-am-i/blob/master/example/index.html)
 for more usage. You can run the example in your browser like:
@@ -74,11 +74,11 @@ $ npm install
 $ [node_modules/.bin/gulp] example
 ```
 
-## API
+##API
 
-#### `WhereAmI` object
+####`WhereAmI` object
 
-##### `var w = new WhereAmI([locator], [storage])`
+#####`var w = new WhereAmI([locator], [storage])`
 
 The constructor accepts 2 parameters. The first is the geolocation service to
 use, and the second is the caching backend to use. Both parameters are optional,
@@ -93,7 +93,7 @@ Availble caches:
 * `localstorage` (default): Store the geolocation result in local storage
 * `variable`: Store the geolocation in a local variable
 
-##### `w.findMe(success, error, [fromStorage])`
+#####`w.findMe(success, error, [fromStorage])`
 
 Locate a user. Accepts success and error callbacks, and optionally overriding
 the option to retrieve the data from storage if it exists (true by default). E.g:
@@ -105,39 +105,39 @@ w.findMe(
 )
 ```
 
-##### `WhereAmI.addLocatorAdapter(key, service)`
+#####`WhereAmI.addLocatorAdapter(key, service)`
 
 Register a new geolocation adapter for use with the service.
 
 The locator should provide `locate(success, err)` method. See the [Free Geo IP](https://github.com/BenConstable/where-am-i/blob/master/src/locators/free-geo-ip.js) adapter for an example.
 
-##### `WhereAmI.addStorageAdapter(key, service)`
+#####`WhereAmI.addStorageAdapter(key, service)`
 
 Register a new storage adapter for use with the service.
 
 The storage adapter should provide `hasLocated()`, `putPlace(place)` and `getPlace()`
 methods. See the [local storage](https://github.com/BenConstable/where-am-i/blob/master/src/storage/local-storage-adapter.js) adapter for an example.
 
-#### `Place` object
+####`Place` object
 
-##### `p.lat`
+#####`p.lat`
 
 The geolocated latitude.
 
-##### `p.lng`
+#####`p.lng`
 
 The geolocated longitude.
 
-##### `p.country.iso`
+#####`p.country.iso`
 
 The geolocated [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) country
 code (e.g GB).
 
-##### `p.country.name`
+#####`p.country.name`
 
 The geolocated country name (e.g United Kingdom).
 
-##### `p.country.region`
+#####`p.country.region`
 
 The geolocated country region. Possible values are:
 
@@ -149,12 +149,12 @@ The geolocated country region. Possible values are:
 * Oceania
 * South America
 
-##### `p.inCountry(isoCodes)`
+#####`p.inCountry(isoCodes)`
 
 Check if the geolocated result is in the given country. Accepts an [ISO](https://en.wikipedia.org/wiki/ISO_3166-1)
 code, or an array of codes.
 
-##### `p.inRegion(regions)`
+#####`p.inRegion(regions)`
 
 Check if the geolocated result is in the given region (see possible values above).
 Accepts a single region, or an array of regions. Each region can have an case and
@@ -167,6 +167,6 @@ p.inRegion('nOrTHAMerica')
 p.inRegion(['North America', 'Europe'])
 ```
 
-## License
+##License
 
 MIT © Ben Constable
