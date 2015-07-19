@@ -101,7 +101,7 @@ the option to retrieve the data from storage if it exists (true by default). E.g
 ```js
 w.findMe(
     function (place) {}
-  , funtion (err) {}
+  , function (err) {}
 )
 ```
 
