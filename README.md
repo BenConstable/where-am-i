@@ -71,7 +71,7 @@ for more usage. You can run the example in your browser like:
 $ git clone git@github.com:BenConstable/where-am-i.git
 $ cd where-am-i/
 $ npm install
-$ [node_modules/.bin/gulp] example
+$ [node_modules/.bin/]gulp example
 ```
 
 ##API
