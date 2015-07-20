@@ -1,7 +1,8 @@
 /*
  * Simple request class. Wraps XMLHttpRequest with an easier-to-use API.
  *
- * Assumes all responses are JSON.
+ * Assumes all responses are JSON. Non-JSON responses will invoke the error
+ * callback.
  *
  * Usage:
  *
@@ -33,11 +34,16 @@ Request.prototype.send = function (success, error) {
 
     req.onreadystatechange = function () {
         if (req.readyState === 4) {
-            var resp = JSON.parse(req.responseText)
-            if (req.status === 200) {
-                success(resp, req.status)
-            } else {
-                error(resp, req.status)
+            try {
+                var resp = JSON.parse(req.responseText)
+
+                if (req.status === 200) {
+                    success(resp, req.status)
+                } else {
+                    error(resp, req.status)
+                }
+            } catch (e) {
+                error({ message: 'Response was not valid JSON' }, undefined)
             }
         }
     }

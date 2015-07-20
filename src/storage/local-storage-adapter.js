@@ -13,7 +13,16 @@ function LocalStorageAdapter() {
 }
 
 LocalStorageAdapter.prototype.hasLocated = function () {
-    return localStorage.getItem(this.key) !== null
+    if (localStorage.getItem(this.key)) {
+        try {
+            JSON.parse(localStorage.getItem(this.key))
+            return true
+        } catch (e) {
+            return false
+        }
+    } else {
+        return false
+    }
 }
 
 LocalStorageAdapter.prototype.putPlace = function (place) {
