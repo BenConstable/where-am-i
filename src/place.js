@@ -41,7 +41,7 @@ function Place(data) {
     this.lat = data.lat
     this.lng = data.lng
 
-    if (typeof data.iso !== undefined) {
+    if (typeof data.iso !== 'undefined') {
         this.country = countries[data.iso]
     } else {
         this.country = data.country
