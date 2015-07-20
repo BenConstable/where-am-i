@@ -42,36 +42,48 @@ function Place(data) {
     this.lng = data.lng
 
     if (typeof data.iso !== 'undefined') {
-        this.country = countries[data.iso]
-    } else {
-        this.country = data.country
+        if (data.iso) {
+            this.country = countries[data.iso] || {}
+        } else {
+            this.country = {}
+        }
+    } else  {
+        this.country = data.country || {}
     }
 }
 
 Place.prototype.inCountry = function (cs) {
-    if (!(cs instanceof Array)) {
-        cs = [cs]
-    }
+    if (typeof this.country.iso !== 'undefined') {
+        if (!(cs instanceof Array)) {
+            cs = [cs]
+        }
 
-    return cs.indexOf(this.country.iso) !== -1
+        return cs.indexOf(this.country.iso) !== -1
+    } else {
+        return false
+    }
 }
 
 Place.prototype.inRegion = function (rs) {
-    if (!(rs instanceof Array)) {
-        rs = [rs]
-    }
+    if (typeof this.country.iso !== 'undefined') {
+        if (!(rs instanceof Array)) {
+            rs = [rs]
+        }
 
-    for (var i = 0; i < rs.length; i++) {
-        var r = uppercase(rs[i])
+        for (var i = 0; i < rs.length; i++) {
+            var r = uppercase(rs[i])
 
-        if (typeof regions[r] !== 'undefined') {
-            if (regions[r].indexOf(this.country.iso) !== -1) {
-                return true
+            if (typeof regions[r] !== 'undefined') {
+                if (regions[r].indexOf(this.country.iso) !== -1) {
+                    return true
+                }
             }
         }
-    }
 
-    return false
+        return false
+    } else {
+        return false
+    }
 }
 
 

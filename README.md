@@ -133,9 +133,13 @@ The geolocated longitude.
 The geolocated [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) country
 code (e.g GB).
 
+May be `undefined` if country could not be determined.
+
 #####`p.country.name`
 
 The geolocated country name (e.g United Kingdom).
+
+May be `undefined` if country could not be determined.
 
 #####`p.country.region`
 
@@ -149,10 +153,14 @@ The geolocated country region. Possible values are:
 * Oceania
 * South America
 
+May be `undefined` if country could not be determined.
+
 #####`p.inCountry(isoCodes)`
 
 Check if the geolocated result is in the given country. Accepts an [ISO](https://en.wikipedia.org/wiki/ISO_3166-1)
 code, or an array of codes.
+
+If country info is not available, will return false.
 
 #####`p.inRegion(regions)`
 
@@ -166,6 +174,8 @@ p.inRegion('NORTH AMERICA')
 p.inRegion('nOrTHAMerica')
 p.inRegion(['North America', 'Europe'])
 ```
+
+If country info is not available, will return false.
 
 ##License
 
