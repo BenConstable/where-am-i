@@ -19,7 +19,7 @@ var VarStorageAdapter = require('./var-storage-adapter')
 m
     .register('variable', new VarStorageAdapter())
     .register('localstorage', new LocalStorageAdapter())
-    .setDefault('variable')
+    .setDefault('localstorage')
 
 
 
