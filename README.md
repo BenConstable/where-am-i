@@ -12,7 +12,7 @@
 $ npm install --save where-am-i
 ```
 
-###Browser
+###Script tag
 
 Just include the [`dist/where-am-i.min.js`](https://github.com/BenConstable/where-am-i/blob/master/dist/where-am-i.min.js)
 file in a script tag on your page.
