@@ -1,6 +1,6 @@
 {
   "name": "where-am-i",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Wrapper around several client-side geolocation APIs",
   "license": "MIT",
   "repository": "benconstable/where-am-i",
