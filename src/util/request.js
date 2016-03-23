@@ -10,7 +10,7 @@
  *
  *     // Second param is optional, GET requests are default
  *
- *     var req = new Request('http://url.com', { method: 'GET' })
+ *     var req = new Request('http://url.com', { method: 'GET', timeout: 0 })
  *
  *     req.send(
  *         function (data) {
@@ -27,6 +27,7 @@
 function Request(url, opts) {
     this.url = url
     this.method = typeof opts !== 'undefined' ? (opts.method || 'GET') : 'GET'
+    this.timeout = typeof opts !== 'undefined' ? (opts.timeout || 0) : 0
 }
 
 Request.prototype.send = function (success, error) {
@@ -48,7 +49,12 @@ Request.prototype.send = function (success, error) {
         }
     }
 
+    req.ontimeout = function () {
+        error({ message: 'Request timed out' }, undefined)
+    }
+
     req.open(this.method, this.url, true)
+    req.timeout = this.timeout
     req.send()
 }
 

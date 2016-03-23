@@ -12,7 +12,7 @@ var Request = require('../util/request')
 function FreeGeoIp() {}
 
 FreeGeoIp.prototype.locate = function (success, err) {
-    var req = new Request('//freegeoip.net/json/')
+    var req = new Request('//freegeoip.net/json/', { timeout: 2000 })
       , that = this
 
     req.send(
